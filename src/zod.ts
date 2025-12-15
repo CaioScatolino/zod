@@ -2,7 +2,7 @@ import z from "zod";
 
 const schema = z.object({
   name: z.string().min(2),
-  age: z.number().min(18).max(120),
+  age: z.number().gte(18, 'Precisa ser maior de 18').int(),
   email: z.email(),
   status: z.boolean().default(true),
   characteristics: z.object({
@@ -16,7 +16,7 @@ type User = z.infer<typeof schema>;
 
 let data: User = {
   name: "John",
-  age: 20,
+  age: 11,
   email: "john@example.com",
   status: true,
   characteristics: {
