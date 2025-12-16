@@ -8,14 +8,17 @@
   "main": "index.js",
   "scripts": {
     "zod": "node --import=tsx --watch ./src/zod.ts",
-    "script": "node --import=tsx --watch ./script.ts"
+    "script": "node --import=tsx --watch ./script.ts",
+    "dev": "node --import=tsx --watch ./src/server.ts"
   },
   "devDependencies": {
+    "@types/express": "^5.0.6",
     "@types/node": "^25.0.0",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3"
   },
   "dependencies": {
+    "express": "^5.2.1",
     "zod": "^4.1.13"
   }
 }
