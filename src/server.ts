@@ -1,4 +1,5 @@
 import express from "express";
+import { z } from "zod";
 
 const server = express();
 server.use(express.json());
@@ -6,6 +7,26 @@ server.use(express.urlencoded({ extended: true }));
 
 server.get("/ping", (req, res) => {
   return res.json({ message: "pong" });
+});
+
+server.post("/user", (req, res) => {
+  // processo
+  const userSchema = z.object({
+    name: z.string().min(2),
+    age: z.number().min(18).max(120),
+    email: z.email(),
+  });
+
+  const result = userSchema.safeParse(req.body);
+
+  if (!result.success) {
+    return res.status(400).json({ error: result.error.issues });
+  }
+
+  console.log("Processando...");
+  console.log(result.data);
+
+  res.status(201).json({ result: "User created" });
 });
 
 server.listen(3333, () => {
