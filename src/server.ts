@@ -9,6 +9,15 @@ server.get("/ping", (req, res) => {
   return res.json({ message: "pong" });
 });
 
+server.get("/posts", async (req, res) => {
+  const request = await fetch("https://jsonplaceholder.typicode.com/posts")
+    .then((response) => response.json())
+    .then((data) => {
+      return res.json(data.length);
+    })
+    .catch((error) => console.error(error));
+});
+
 server.post("/user", (req, res) => {
   // processo
   const userSchema = z.object({

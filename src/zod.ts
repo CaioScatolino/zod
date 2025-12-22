@@ -2,13 +2,15 @@ import z from "zod";
 
 const schema = z.object({
   name: z.string().min(2),
-  age: z.number().gte(18, 'Precisa ser maior de 18').int(),
+  age: z.number().gte(18, "Precisa ser maior de 18").int(),
   email: z.email(),
   status: z.boolean().default(true),
   characteristics: z.object({
     strength: z.number().min(1).max(10),
     agility: z.number().min(1).max(10),
     intelligence: z.number().min(1).max(10),
+    dexterity: z.number().min(1).max(10),
+    constitution: z.number().min(1).max(10),
   }),
 });
 
@@ -23,6 +25,8 @@ let data: User = {
     strength: 10,
     agility: 5,
     intelligence: 4,
+    dexterity: 3,
+    constitution: 2,
   },
 };
 
